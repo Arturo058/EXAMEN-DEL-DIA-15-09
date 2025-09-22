@@ -14,6 +14,12 @@ public class MenuEstudiantes {
         contexto = new ContextoOrdenamiento();
     }
 
+    public MenuEstudiantes(AVLTree arbolExistente) {
+        this.tree = arbolExistente; 
+        sc = new Scanner(System.in);
+        contexto = new ContextoOrdenamiento();
+    }
+     
     public void iniciar() {
         boolean exit = false;
 

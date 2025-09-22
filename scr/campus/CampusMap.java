@@ -13,8 +13,15 @@ public class CampusMap {
     private Graph g;
     private Scanner sc;
 
+    // ✅ CONSTRUCTOR ORIGINAL (se mantiene)
     public CampusMap() {
         g = new Graph();
+        sc = new Scanner(System.in);
+    }
+
+    // ✅ NUEVO CONSTRUCTOR que recibe Graph existente
+    public CampusMap(Graph grafoExistente) {
+        this.g = grafoExistente;  // Usa el grafo que ya tiene datos
         sc = new Scanner(System.in);
     }
 
