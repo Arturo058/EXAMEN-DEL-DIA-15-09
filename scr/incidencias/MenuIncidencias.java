@@ -8,15 +8,13 @@ public class MenuIncidencias {
     private MaxHeap heap;
     private Scanner sc;
 
-    // ✅ CONSTRUCTOR ORIGINAL (se mantiene)
     public MenuIncidencias() {
         heap = new MaxHeap();
         sc = new Scanner(System.in);
     }
 
-    // ✅ NUEVO CONSTRUCTOR que recibe MaxHeap existente
     public MenuIncidencias(MaxHeap heapExistente) {
-        this.heap = heapExistente;  // Usa el heap que ya tiene datos
+        this.heap = heapExistente;  
         sc = new Scanner(System.in);
     }
 

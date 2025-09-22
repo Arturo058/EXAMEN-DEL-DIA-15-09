@@ -14,10 +14,10 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         boolean salir = false;
 
-        // ✅ Instancias COMPARTIDAS
+        
         AVLTree arbolEstudiantes = new AVLTree();
         ContextoOrdenamiento contextoOrdenamiento = new ContextoOrdenamiento();
-        MaxHeap incidencias = new MaxHeap();  // ← Este mismo heap se compartirá
+        MaxHeap incidencias = new MaxHeap();  
         Graph grafoCampus = new Graph();
 
         while (!salir) {
@@ -49,7 +49,7 @@ public class Main {
                     break;
 
                 case 3:
-                    // ✅ PASA el heap compartido
+                    
                     MenuIncidencias menuIncidencias = new MenuIncidencias(incidencias);
                     menuIncidencias.iniciar();
                     break;
