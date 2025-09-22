@@ -17,8 +17,8 @@ public class Main {
         // ✅ Instancias COMPARTIDAS
         AVLTree arbolEstudiantes = new AVLTree();
         ContextoOrdenamiento contextoOrdenamiento = new ContextoOrdenamiento();
-        MaxHeap incidencias = new MaxHeap();
-        Graph grafoCampus = new Graph();  // ← Este mismo grafo se compartirá
+        MaxHeap incidencias = new MaxHeap();  // ← Este mismo heap se compartirá
+        Graph grafoCampus = new Graph();
 
         while (!salir) {
             System.out.println("\n=== CAMPUS NAVIGATOR & ANALYTICS ===");
@@ -39,7 +39,6 @@ public class Main {
 
             switch (opcion) {
                 case 1:
-                    // ✅ PASA el grafo compartido
                     CampusMap campusMap = new CampusMap(grafoCampus);
                     campusMap.iniciar();
                     break;
@@ -50,7 +49,8 @@ public class Main {
                     break;
 
                 case 3:
-                    MenuIncidencias menuIncidencias = new MenuIncidencias();
+                    // ✅ PASA el heap compartido
+                    MenuIncidencias menuIncidencias = new MenuIncidencias(incidencias);
                     menuIncidencias.iniciar();
                     break;
 
