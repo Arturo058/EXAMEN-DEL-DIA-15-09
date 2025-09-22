@@ -2,8 +2,10 @@ import campus.CampusMap;
 import campus.Graph;
 import estudiantes.AVLTree;
 import estudiantes.ContextoOrdenamiento;
+import estudiantes.MenuEstudiantes;
 import incidencias.MenuIncidencias;
 import incidencias.MaxHeap;
+import reportes.ReportGenerator;
 
 import java.util.Scanner;
 
@@ -12,10 +14,10 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         boolean salir = false;
 
-        // ✅ Instancias principales que usaremos en los reportes
+        // ✅ Instancias COMPARTIDAS
         AVLTree arbolEstudiantes = new AVLTree();
         ContextoOrdenamiento contextoOrdenamiento = new ContextoOrdenamiento();
-        MaxHeap incidencias = new MaxHeap();
+        MaxHeap incidencias = new MaxHeap();  // ← Este mismo heap se compartirá
         Graph grafoCampus = new Graph();
 
         while (!salir) {
@@ -37,26 +39,24 @@ public class Main {
 
             switch (opcion) {
                 case 1:
-                    // Llamar al módulo Campus desde el paquete campus
-                    CampusMap campusMap = new CampusMap();
+                    CampusMap campusMap = new CampusMap(grafoCampus);
                     campusMap.iniciar();
                     break;
 
                 case 2:
-                    estudiantes.MenuEstudiantes menuEstudiantes = new estudiantes.MenuEstudiantes();
+                    MenuEstudiantes menuEstudiantes = new MenuEstudiantes(arbolEstudiantes);
                     menuEstudiantes.iniciar();
                     break;
 
                 case 3:
-                    System.out.println("\n--- Módulo Incidencias ---");
-                    MenuIncidencias menuIncidencias = new MenuIncidencias();
+                    // ✅ PASA el heap compartido
+                    MenuIncidencias menuIncidencias = new MenuIncidencias(incidencias);
                     menuIncidencias.iniciar();
                     break;
 
                 case 4:
                     System.out.println("\n--- Reportes ---");
-                    reportes.ReportGenerator reportGenerator = new reportes.ReportGenerator();
-                    // ✅ Llamamos al método maestro pasando las estructuras
+                    ReportGenerator reportGenerator = new ReportGenerator();
                     reportGenerator.generarReportes(arbolEstudiantes, contextoOrdenamiento, incidencias, grafoCampus);
                     break;
 
@@ -69,7 +69,6 @@ public class Main {
                     System.out.println("Opción no válida. Intente nuevamente.");
             }
         }
-
         sc.close();
     }
 }
